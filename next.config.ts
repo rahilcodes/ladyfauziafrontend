@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: false,
   },
   images: {
+    dangerouslyAllowLocalIP: true,
     unoptimized: false,
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 86400,
