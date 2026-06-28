@@ -46,7 +46,7 @@ export class ErrorBoundary extends Component<Props, State> {
           <div className="flex gap-4">
             <button
               onClick={() => window.location.reload()}
-              className="rounded-lg bg-primary px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="rounded-none bg-primary px-5 py-3 text-xs tracking-wider uppercase font-semibold text-white hover:bg-[#B59469] focus:outline-none transition-all duration-300"
             >
               Refresh Page
             </button>
@@ -54,7 +54,7 @@ export class ErrorBoundary extends Component<Props, State> {
               onClick={() =>
                 this.setState({ hasError: false, error: undefined })
               }
-              className="rounded-lg border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+              className="rounded-none border border-neutral-300 px-5 py-3 text-xs tracking-wider uppercase font-semibold text-gray-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none transition-all duration-300 dark:border-neutral-700 dark:text-gray-300"
             >
               Try Again
             </button>

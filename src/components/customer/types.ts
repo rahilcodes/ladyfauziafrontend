@@ -18,4 +18,5 @@ export type RegisterInputs = {
   email: string;
   password: string;
   passwordConfirmation: string;
+  referralCode?: string;
 };

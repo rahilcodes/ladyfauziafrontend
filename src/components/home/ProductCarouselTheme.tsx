@@ -5,12 +5,12 @@ import { resolveCardPrice } from "@utils/helper";
 
 const Theme = ({ title, description, products }: ProductsSectionProps) => {
   return (
-    <section className="pt-6 sm:pt-12 lg:pt-20">
-      <div className="md:max-w-4.5xl mx-auto mb-6 w-full px-0 text-center md:text-start xss:mb-10">
-        <h2 className="mb-4 font-outfit text-xl md:text-4xl font-semibold text-black dark:text-white">
+    <section className="pt-8 sm:pt-16 lg:pt-24">
+      <div className="md:max-w-4.5xl mx-auto mb-8 w-full px-0 text-center md:text-start xss:mb-12">
+        <h2 className="mb-3 font-cormorant text-2xl md:text-3xl font-light tracking-[0.18em] text-neutral-900 dark:text-neutral-100 uppercase pl-[2px]">
           {title}
         </h2>
-        <p className="text-sm md:text-lg font-normal text-selected-black dark:text-selected-white">
+        <p className="text-xs md:text-sm font-light tracking-wide text-stone-500 dark:text-stone-400 pl-[2px] max-w-xl leading-relaxed">
           {description}
         </p>
       </div>

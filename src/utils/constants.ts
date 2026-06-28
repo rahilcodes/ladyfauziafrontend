@@ -49,7 +49,8 @@ const IMAGE_BASE = "/image";
 const ICON_BASE = "/icons";
 
 export const IMAGES = {
-  logo: `${IMAGE_BASE}/Logo.webp`,
+  logo: `${IMAGE_BASE}/lady fauzia logo.png`,
+  logoDark: `${IMAGE_BASE}/lady fauzia logo dark backgroung.png`,
 
   signUp: `${IMAGE_BASE}/sign-in.webp`,
   signIn: `${IMAGE_BASE}/login.webp`,

@@ -284,8 +284,8 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
           <Button
             type="submit"
             isLoading={loading}
-          className="bg-primary hover:bg-blue-700 text-white font-semibold w-[160px] h-12 lg:w-[196px] lg:h-13 lg:px-20 lg:py-4 gap-2.5 rounded-full text-base leading-[100%] font-outfit transition-all flex items-center justify-center"
-          spinner={<LoadingDots className="bg-white" />}
+            className="bg-primary hover:bg-[#B59469] text-white font-semibold w-[160px] h-12 lg:w-[196px] lg:h-13 lg:px-20 lg:py-4 gap-2.5 rounded-none text-xs tracking-[0.2em] font-outfit uppercase transition-all duration-300 flex items-center justify-center"
+            spinner={<LoadingDots className="bg-white" />}
           >
             Save
           </Button>

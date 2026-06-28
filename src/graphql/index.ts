@@ -7,6 +7,7 @@ export * from "./checkout/queries";
 export * from "./checkout/mutations";
 export * from "./types";
 export * from "./customer/queries/GetCustomerProfile";
+export * from "./customer/queries/GetCustomerLoyalty";
 export * from "./customer/queries/GetWishlists";
 export * from "./customer/queries/GetWishlist";
 export * from "./customer/queries/GetCompareItems";

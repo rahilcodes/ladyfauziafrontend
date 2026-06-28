@@ -117,7 +117,7 @@ export default function ProfileDetails({ user }: ProfileDetailsProps) {
         <Button
           onClick={handleLogout}
           isLoading={isLoggingOut}
-          className="bg-primary hover:bg-blue-700 text-white font-semibold w-[160px] h-12 lg:w-[211px] lg:h-13 lg:px-20 lg:py-4 gap-2.5 rounded-full text-base leading-[100%] font-outfit transition-all flex items-center justify-center"
+          className="bg-primary hover:bg-[#B59469] text-white font-semibold w-[160px] h-12 lg:w-[211px] lg:h-13 lg:px-20 lg:py-4 gap-2.5 rounded-none text-sm tracking-[0.18em] font-outfit uppercase transition-all flex items-center justify-center"
           spinner={<LoadingDots className="bg-white" />}
         >
           Logout

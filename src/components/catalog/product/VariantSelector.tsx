@@ -48,12 +48,12 @@ export function VariantSelector({
                       setUserInteracted(true);
                     }}
                     className={clsx(
-                      "flex min-w-12 cursor-pointer items-center justify-center rounded-lg bg-neutral-100 px-3.5 py-2.5 text-sm dark:border-neutral-800 dark:bg-neutral-800",
+                      "flex min-w-12 cursor-pointer items-center justify-center rounded-none border border-[#EAE5DA] bg-transparent px-4.5 py-2.5 text-xs tracking-wider uppercase font-medium dark:border-[#262626]",
                       {
-                        "cursor-default ring-2 ring-primary text-primary": isActive,
-                        "ring-[0] transition duration-300 ease-in-out hover:scale-110 hover:border-primary":
+                        "cursor-default border-[#C5A880] ring-[1px] ring-[#C5A880] text-primary": isActive,
+                        "hover:border-primary transition duration-300 ease-in-out":
                           !isActive && isAvailable,
-                        "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-selected-black ring-1 ring-neutral-300 before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform dark:bg-neutral-900 dark:text-selected-white dark:ring-neutral-700 before:dark:bg-neutral-700":
+                        "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100/50 text-neutral-300 border-[#EAE5DA] dark:bg-neutral-900/50 dark:text-neutral-600 dark:border-neutral-800 before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform before:dark:bg-neutral-700":
                           !isAvailable,
                       }
                     )}

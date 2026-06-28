@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 @plugin '../config/hero.ts';
 @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
@@ -5,9 +6,12 @@
 
 html,
 body {
+  max-width: 100%;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #6b7280 transparent;
 }
+
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
@@ -51,67 +55,70 @@ body::-webkit-scrollbar-thumb {
   /* Font sizes */
   --font-size-xxs: 13px;
   /* Font family */
-  --font-family-outfit: var(--font-outfit), system-ui, sans-serif;
+  --font-family-outfit: 'Montserrat', sans-serif;
+  --font-family-cormorant: 'Cormorant Garamond', serif;
+  --font-family-montserrat: 'Montserrat', sans-serif;
 }
 
 
 @theme {
   /* Brand / interactive */
-  --color-primary: #2563eb;
-  --color-primary-soft: #79a3ff;
-  --color-primary-strong: #0052cc;
-  --color-accent: #006aff;
-  --color-accent-strong: #0041ff;
-  --color-info: #02b1fd;
+  --color-primary: #C5A880;
+  --color-primary-soft: #F5F2EB;
+  --color-primary-strong: #B59469;
+  --color-accent: #C5A880;
+  --color-accent-strong: #B59469;
+  --color-info: #C5A880;
 
   /* Status */
   --color-danger: #ff4a4a;
   --color-danger-strong: #ff0000;
   --color-success: #5ba34b;
-  --color-compare-active: #00ae00;
-  --color-rating: #fbbf24;
+  --color-compare-active: #C5A880;
+  --color-rating: #D4AF37;
 
   /* Text */
-  --color-muted: #7d7d7d;
-  --color-muted-strong: #525252;
-  --color-muted-cool: #818a9c;
-  --color-ink: #2c2c2c;
-  --color-light-primary: #E9E9E9;
-  --color-dark-primary: #404040;
-  --color-light-secondary: #333333;
-  --color-tertiary: #F8AF00;
-  --color-quaternary: #e5e7eb;
-  --color-quinary: #666666;
-  --color-senary: #171717;
-  --color-septenary: #f2f2f2;
-  --color-octonary: #5a8eff;
-  --color-novenary: #e3ecff;
-  --color-denary: #314779;
+  --color-muted: #8C867A;
+  --color-muted-strong: #706E6A;
+  --color-muted-cool: #8C867A;
+  --color-ink: #1A1A1A;
+  --color-light-primary: #FAF6EE;
+  --color-dark-primary: #262626;
+  --color-light-secondary: #F5F2EB;
+  --color-tertiary: #C5A880;
+  --color-quaternary: #EAE5DA;
+  --color-quinary: #706E6A;
+  --color-senary: #1A1A1A;
+  --color-senary-strong: #111111;
+  --color-septenary: #F5F2EB;
+  --color-octonary: #C5A880;
+  --color-novenary: #F5F2EB;
+  --color-denary: #8C867A;
 
 
   /* Borders */
-  --color-border: #e9e9e9;
-  --color-border-muted: #e5e7eb;
-  --color-border-cool: #91a4b633;
+  --color-border: #EAE5DA;
+  --color-border-muted: #EAE5DA;
+  --color-border-cool: #EAE5DA88;
   /* #404040 dark-mode border uses the existing `dark-grey` token */
 
   /* Misc brand */
-  --color-brand-navy: #060c3b;
+  --color-brand-navy: #1A1A1A;
   /* Surfaces */
-  --color-surface-cool: #f5f7fa;
-  --color-surface-muted: #ebebeb;
+  --color-surface-cool: #F5F2EB;
+  --color-surface-muted: #EAE5DA;
   --color-surface-dark: #262626;
   --color-surface-darker: #222222;
   --color-surface-darkest: #171717;
-  --color-surface-navy: #1e2939;
-  --color-surface-slate: #415161;
+  --color-surface-navy: #1A1A1A;
+  --color-surface-slate: #8C867A;
 
   /* Overlays (translucent black/white) */
-  --color-overlay-subtle: #00000008;
-  --color-overlay: #0000001a;
-  --color-overlay-strong: #0000004d;
-  --color-overlay-light: #ffffffb2;
-  --color-overlay-light-subtle: #ffffff08;
+  --color-overlay-subtle: #1A1A1A05;
+  --color-overlay: #1A1A1A10;
+  --color-overlay-strong: #1A1A1A35;
+  --color-overlay-light: #FAF6EEb2;
+  --color-overlay-light-subtle: #FAF6EE08;
 
   /* Non-standard font sizes (standard sizes use Tailwind text-xs…text-4xl) */
   --text-11: 11px;
@@ -126,20 +133,20 @@ body::-webkit-scrollbar-thumb {
 /* GLOBAL VARIABLES */
 :root {
   /* Font families */
-  font-family: var(--font-outfit), system-ui, sans-serif;
-  --background: #ffffff;
-  --foreground: #000;
-  --color-selected-black: #00000099;
-  --color-selected-white: #FFFFFF99;
+  font-family: 'Montserrat', 'Outfit', system-ui, sans-serif;
+  --background: #FAF6EE;
+  --foreground: #1A1A1A;
+  --color-selected-black: #1A1A1A99;
+  --color-selected-white: #FAF6EE99;
 
-  --hero-background: #ffffff;
-  --hero-foreground: #000;
-  --dark-grey: #404040;
-  --selected-color: #e3ecff;
-  --selected-color-dark: #555b69;
-  --selected-bottom-dark: #95b6ff;
-  --selected-bg-bottom-dark: #314779;
-  --input-color: #b3b3b3;
+  --hero-background: #FAF6EE;
+  --hero-foreground: #1A1A1A;
+  --dark-grey: #262626;
+  --selected-color: #F5F2EB;
+  --selected-color-dark: #8C867A;
+  --selected-bottom-dark: #C5A880;
+  --selected-bg-bottom-dark: #262626;
+  --input-color: #8C867A;
   /* font size  */
   --font-size-xxs: 13px;
   /* Spacing */
@@ -162,11 +169,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .dark {
-  --background: #171717;
-  --foreground: #ffffff;
+  --background: #1A1A1A;
+  --foreground: #FAF6EE;
 
-  --hero-background: #171717;
-  --hero-foreground: #ffffff;
+  --hero-background: #1A1A1A;
+  --hero-foreground: #FAF6EE;
+  --color-selected-black: #FAF6EE99;
 }
 
 @theme inline {
@@ -187,7 +195,31 @@ body::-webkit-scrollbar-thumb {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-family: 'Montserrat', 'Outfit', system-ui, sans-serif;
+}
+
+/* Logo Switching classes based on dark class on root */
+.light-logo {
+  display: block !important;
+}
+.dark-logo {
+  display: none !important;
+}
+.dark .light-logo {
+  display: none !important;
+}
+.dark .dark-logo {
+  display: block !important;
+}
+
+/* Global Heading Typographic Blend: Cormorant Garamond for Editorial Luxury */
+h1, h2, .font-serif, .font-cormorant {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-weight: 400 !important; /* Luxury serifs look best at lighter/medium weights */
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 @layer components {

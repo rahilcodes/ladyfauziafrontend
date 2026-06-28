@@ -6,8 +6,8 @@ import Image from "next/image";
 import { Shimmer } from "@/components/common/Shimmer";
 
 interface ImageCarouselProps {
-    options: {
-        images: {
+    options?: {
+        images?: {
             image: string;
             link: string;
             title?: string;
@@ -15,34 +15,46 @@ interface ImageCarouselProps {
     };
 }
 
+const DEFAULT_SLIDES = [
+  {
+    image: "/image/kaftan_hero.png",
+    title: "THE KAFTAN COLLECTION",
+    subtitle: "Modest luxury, refined craftsmanship, and timeless silhouettes.",
+    link: "/search",
+    actionText: "DISCOVER NOW",
+    badge: "NEW ARRIVALS"
+  },
+  {
+    image: "/image/hijab_hero.png",
+    title: "PREMIUM HIJABS",
+    subtitle: "Designed for elegance, finished with exquisite crystal embellishments.",
+    link: "/search",
+    actionText: "SHOP THE COLLECTION",
+    badge: "LIMITED EDITION"
+  },
+  {
+    image: "/image/jewelry_hero.png",
+    title: "LUXURY JEWELRY",
+    subtitle: "Sophisticated finishing pieces to elevate every occasion.",
+    link: "/search",
+    actionText: "EXPLORE ACCESSORIES",
+    badge: "SIGNATURE PIECES"
+  }
+];
+
 const ImageCarousel: FC<ImageCarouselProps> = ({ options }) => {
-    const { images } = options;
+    const images = DEFAULT_SLIDES;
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const autoplayRef = useRef<NodeJS.Timeout | null>(null);
-
-    const getFullImageUrl = useCallback((imagePath: string): string => {
-        if (!imagePath) return "";
-        if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-            return imagePath;
-        }
-
-        const backendUrl = process.env.NEXT_PUBLIC_BAGISTO_ENDPOINT;
-        if (!backendUrl) return "";
-
-        const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
-        const cleanBase = backendUrl.endsWith('/') ? backendUrl.slice(0, -1) : backendUrl;
-
-        return `${cleanBase}/${cleanPath}`;
-    }, []);
 
     const startAutoplay = useCallback(() => {
         if (!images || images.length <= 1) return;
 
         autoplayRef.current = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % images.length);
-        }, 5000);
+        }, 6000);
     }, [images]);
 
     const stopAutoplay = useCallback(() => {
@@ -71,8 +83,6 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ options }) => {
 
     const touchStartX = useRef<number | null>(null);
     const touchEndX = useRef<number | null>(null);
-    const mouseStartX = useRef<number | null>(null);
-    const mouseEndX = useRef<number | null>(null);
 
     if (!Array.isArray(images) || images.length === 0) return null;
 
@@ -95,48 +105,23 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ options }) => {
         touchEndX.current = null;
     };
 
-    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-        mouseStartX.current = e.clientX;
-    };
-    const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
-        mouseEndX.current = e.clientX;
-        if (mouseStartX.current !== null && mouseEndX.current !== null) {
-            const distance = mouseStartX.current - mouseEndX.current;
-            if (distance > 50) {
-                setCurrentIndex((prev) => (prev + 1) % images.length);
-            } else if (distance < -50) {
-                setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-            }
-        }
-        mouseStartX.current = null;
-        mouseEndX.current = null;
-    };
-
     return (
-        <section className="mt-5 lg:mt-7.5 w-full">
+        <section className="mt-6 w-full">
             <div
-                className="group relative w-full overflow-hidden rounded-xl md:rounded-2xl aspect-[1.97/1]"
-                style={{
-                    position: 'relative',
-                    width: '100%'
-                }}
+                className="group relative w-full overflow-hidden rounded-xl aspect-[16/9] md:aspect-[21/9]"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
             >
                 {images.map((img, index) => {
-                    const imageUrl = getFullImageUrl(img.image);
                     const isActive = index === currentIndex;
-                    const altText = img.title || `Banner ${index + 1}`;
 
                     return (
                         <div
-                            key={img.image ?? index}
-                            className={`absolute inset-0 transition-opacity duration-700 ${isActive ? "opacity-100 z-0" : "opacity-0 z-0"}`}
+                            key={img.image}
+                            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${isActive ? "opacity-100 scale-100 z-10" : "opacity-0 scale-105 z-0 pointer-events-none"}`}
                             style={{
                                 position: 'absolute',
                                 top: 0,
@@ -145,50 +130,51 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ options }) => {
                                 height: '100%'
                             }}
                         >
-                            {img.link ? (
-                                <Link
-                                    href={`/search/${img.link}`}
-                                    className="block h-full w-full"
-                                    aria-label={`View ${altText}`}
-                                >
-                                    <div className="relative h-full w-full">
-                                        <Shimmer className="h-full w-full" />
-                                        <Image
-                                            src={imageUrl}
-                                            alt={altText}
-                                            fill
-                                            className="object-cover !z-0"
-                                            priority={index === 0}
-                                            sizes="100vw"
-                                        />
-                                    </div>
-                                </Link>
-                            ) : (
-                                <div className="relative h-full w-full">
-                                    <Shimmer className="h-full w-full" />
-                                    <Image
-                                        src={imageUrl}
-                                        alt={altText}
-                                        fill
-                                        className="object-cover !z-0"
-                                        priority={index === 0}
-                                        sizes="100vw"
-                                    />
+                            <div className="relative h-full w-full">
+                                <Shimmer className="h-full w-full bg-neutral-100 dark:bg-neutral-900" />
+                                <Image
+                                    src={img.image}
+                                    alt={img.title}
+                                    fill
+                                    className="object-cover !z-0 transition-transform duration-[6000ms] ease-out group-hover:scale-102"
+                                    priority={index === 0}
+                                    sizes="100vw"
+                                />
+                                {/* Luxury dark gradient overlay for text readability */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-black/35 z-10" />
+
+                                {/* Text content and Gold CTA */}
+                                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-8 z-20">
+                                    <span className="text-[10px] md:text-xs font-semibold tracking-[0.3em] text-[#C5A880] uppercase mb-2 md:mb-3 pl-[0.3em]">
+                                        {img.badge}
+                                    </span>
+                                    <h1 className="font-cormorant text-xl md:text-4xl lg:text-5xl font-light tracking-[0.15em] text-white uppercase mb-3 md:mb-5 max-w-2xl leading-tight">
+                                        {img.title}
+                                    </h1>
+                                    <p className="text-[10px] md:text-sm font-light tracking-wide text-neutral-200 max-w-md md:max-w-lg mb-6 md:mb-8 leading-relaxed">
+                                        {img.subtitle}
+                                    </p>
+                                    <Link
+                                        href={img.link}
+                                        className="inline-block border border-[#C5A880] bg-transparent text-white hover:bg-[#C5A880] hover:text-black font-semibold tracking-[0.2em] text-[10px] md:text-xs px-6 py-3 md:px-8 md:py-4 transition-all duration-500 uppercase select-none rounded-none"
+                                    >
+                                        {img.actionText}
+                                    </Link>
                                 </div>
-                            )}
+                            </div>
                         </div>
                     );
                 })}
 
                 {images.length > 1 && (
-                    <div className="absolute bottom-4 left-1/2 z-0 flex -translate-x-1/2 gap-1.5 md:gap-2 rounded-full bg-black/30 px-2 py-1.5 md:px-3 md:py-2 backdrop-blur-sm md:bottom-6">
+                    <div className="absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 gap-1.5 md:gap-2 rounded-full bg-black/15 px-2 py-1.5 md:px-3 md:py-2 backdrop-blur-sm md:bottom-6">
                         {images.map((img, index) => (
                             <button
-                                key={img.image ?? index}
+                                key={img.image}
                                 onClick={() => handleDotClick(index)}
-                                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer scale-75 md:scale-100 ${index === currentIndex
-                                    ? "w-8 bg-white"
-                                    : "w-2.5 bg-white/50 hover:bg-white/80 hover:w-4"
+                                className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${index === currentIndex
+                                    ? "w-6 bg-[#C5A880]"
+                                    : "w-1.5 bg-white/40 hover:bg-white/80"
                                     }`}
                                 type="button"
                                 aria-label={`Go to slide ${index + 1}`}

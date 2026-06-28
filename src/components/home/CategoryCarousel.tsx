@@ -97,7 +97,7 @@ const CategoryCarousel: FC<CategoryCarouselProps> = async ({
   return (
     <section className="pt-6 sm:pt-12 lg:pt-20">
         <div className="md:max-w-4.5xl mx-auto mb-5 sm:mb-10 w-auto text-center md:px-36">
-          <h2 className="mb-2 text-xl md:text-4xl  font-semibold">
+          <h2 className="font-cormorant mb-2 text-2xl md:text-4xl font-light tracking-[0.18em] text-neutral-900 dark:text-neutral-100 uppercase">
             Shop by Category
           </h2>
           <p className="text-sm md:text-lg font-normal text-selected-black dark:text-selected-white">
@@ -152,6 +152,7 @@ const CategoryCarousel: FC<CategoryCarouselProps> = async ({
                       amount: "0",
                       currencyCode: "USD",
                     }}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     src={category.logoUrl || NOT_IMAGE}
                   />
                 </Link>

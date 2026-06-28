@@ -55,6 +55,7 @@ export default function AccountSidebar({ user }: AccountSidebarProps) {
   const menuItems = [
     { name: "Profile", iconPath: IMAGES.profile, href: "/account/profile" },
     { name: "Orders", iconPath: IMAGES.orders, href: "/account/orders" },
+    { name: "Joy Points & VIP", iconPath: IMAGES.reviews, href: "/account/loyalty" },
     { name: "Downloadable Products", iconPath: IMAGES.download, href: "/account/downloadable-products" },
     { name: "Wishlist", iconPath: IMAGES.wishlist, href: "/account/wishlist" },
     { name: "Reviews", iconPath: IMAGES.reviews, href: "/account/reviews" },

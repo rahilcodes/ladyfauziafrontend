@@ -10,6 +10,7 @@ export default function SearchNoResult({ searchQuery }: { searchQuery?: string }
             src={IMAGES.noResult}
             alt="No Results Found"
             fill
+            sizes="320px"
             className="object-contain opacity-80"
           />
         </div>

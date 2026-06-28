@@ -217,7 +217,7 @@ export default function ProfileDrawer({ isOpen, onClose, user: initialUser, prof
               <Button
                 onClick={handleLogout}
                 isLoading={isLoggingOut}
-                className="w-full bg-primary hover:bg-blue-700 text-white font-semibold py-6 rounded-full text-lg"
+                className="w-full bg-primary hover:bg-[#B59469] text-white font-semibold py-6 rounded-none text-xs tracking-[0.2em] uppercase transition-all duration-300"
                 spinner={<LoadingDots className="bg-white" />}
               >
                 Logout

@@ -49,7 +49,7 @@ export const ProductCard: FC<ProductCardProps> = ({
               width={353}
               height={283}
               sizes={sizes}
-              className={`rounded-lg bg-neutral-100 object-cover transition duration-300 ease-in-out group-hover:scale-105`}
+              className={`rounded-lg bg-neutral-100 object-cover transition duration-[1000ms] ease-in-out group-hover:scale-105`}
               priority={priority}
             />
           </div>
@@ -62,35 +62,35 @@ export const ProductCard: FC<ProductCardProps> = ({
         </div>
       </div>
 
-      <div>
-        <h3 className="mb-2 md:mb-2.5 text-md font-medium md:text-lg">
+      <div className="mt-2 pl-0.5 select-none">
+        <h3 className="mb-1 text-sm font-normal tracking-wide text-neutral-800 dark:text-neutral-200 transition-colors duration-300 group-hover:text-primary">
           {product?.name}
         </h3>
 
         <div className="flex items-center gap-2">
           {(product?.type === "configurable" || product?.type === "grouped") && !specialPrice && (
-            <span className="text-xs text-gray-600 dark:text-gray-400 md:text-sm">
+            <span className="text-xs text-stone-500 dark:text-stone-400">
               {product?.type === "configurable" ? "As low as" : "Starting at"}
             </span>
           )}
           {specialPrice ? (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-sm">
               <Price
                 amount={specialPrice}
-                className="text-sm font-semibold"
+                className="font-normal text-[#B59469]"
                 currencyCode={currency}
               />
               <Price
                 amount={price}
-                className="text-xs font-medium text-selected-black dark:text-selected-white md:text-sm"
-                style={{ textDecoration: 'line-through', textDecorationColor: '#8a8787ff', textDecorationThickness: '2px' }}
+                className="font-light text-stone-400 dark:text-stone-500 line-through"
+                style={{ textDecoration: 'line-through', textDecorationColor: '#B5946966', textDecorationThickness: '1px' }}
                 currencyCode={currency}
               />
             </div>
           ) : (
             <Price
               amount={price}
-              className="text-sm font-semibold"
+              className="text-sm font-normal text-neutral-700 dark:text-neutral-300"
               currencyCode={currency}
             />
           )}

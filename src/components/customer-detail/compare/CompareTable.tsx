@@ -420,6 +420,7 @@ export default function CompareTable({ items }: { items: any[] }) {
                                                             src={product.baseImageUrl || IMAGES.placeholder}
                                                             alt={product.name || "Product Image"}
                                                             fill
+                                                            sizes="320px"
                                                             className="object-cover hover:scale-105 transition-transform duration-500"
                                                         />
                                                     </div>

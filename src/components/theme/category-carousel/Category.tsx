@@ -43,6 +43,7 @@ const Category: FC<{
                     amount: "0",
                     currencyCode: "USD",
                   }}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   src={product?.logoUrl || NOT_IMAGE}
                 />
               </Link>

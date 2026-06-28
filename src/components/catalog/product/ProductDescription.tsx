@@ -12,6 +12,8 @@ import { ProductData, ProductReviewNode } from "../type";
 import { safeCurrencyCode, safePriceValue, safeParse } from "@utils/helper";
 import Breadcrumb from "@components/common/Breadcrumb";
 import { CalendarIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import TrustBadges from "@/components/catalog/TrustBadges";
+import SizeGuideModal from "@/components/catalog/SizeGuideModal";
 
 export function ProductDescription({
   product,
@@ -144,6 +146,9 @@ export function ProductDescription({
             onReviewClick={handleReviewClick}
           />
         </div>
+        <div className="flex items-center gap-4 -mt-2">
+          <SizeGuideModal />
+        </div>
       </div>
 
       {product?.shortDescription ? (
@@ -275,6 +280,8 @@ export function ProductDescription({
         userInteracted={userInteracted}
         bookingProduct={(product as any).bookingProducts?.edges?.[0]?.node}
       />
+
+      <TrustBadges />
 
 
       <ProductMoreDetails

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import InputText from "@components/common/form/Input";
 import { useCustomToast } from "@/utils/hooks/useToast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { EMAIL_REGEX, SIGNUP_IMG, IS_VALID_INPUT, IMAGES } from "@utils/constants";
 import { createUser } from "@utils/actions";
 import { Button } from "@components/common/button/Button";
@@ -22,6 +22,8 @@ const ShortcutIcon = () => (
 
 export default function RegistrationForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const refCode = searchParams.get("ref") || "";
   const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
 
   const {
@@ -31,6 +33,9 @@ export default function RegistrationForm() {
   } = useForm<RegisterInputs>({
     mode: "onSubmit",
     reValidateMode: "onChange",
+    defaultValues: {
+      referralCode: refCode,
+    }
   });
 
   const { showToast } = useCustomToast();
@@ -180,6 +185,15 @@ export default function RegistrationForm() {
                   placeholder="Enter confirm password"
                   size="lg"
                   typeName="password"
+                />
+
+                <InputText
+                  {...register("referralCode")}
+                  label="Referral Code (Optional)"
+                  labelPlacement="outside"
+                  name="referralCode"
+                  placeholder="Enter referral code"
+                  size="lg"
                 />
               </div>
 

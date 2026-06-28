@@ -20,8 +20,10 @@ import {
   CUSTOMER_REGISTRATION,
   FORGET_PASSWORD,
   UPDATE_CUSTOMER_PROFILE,
+  INVITE_FRIEND,
 } from "@/graphql/customer/mutations";
 import { GET_CUSTOMER_PROFILE } from "@/graphql/customer/queries/GetCustomerProfile";
+import { GET_CUSTOMER_LOYALTY } from "@/graphql/customer/queries/GetCustomerLoyalty";
 import { GET_CUSTOMER_ORDER } from "@/graphql/customer/queries/GetCustomerOrder";
 import { GET_CUSTOMER_ORDERS } from "@/graphql/customer/queries/GetCustomerOrders";
 import { GET_CUSTOMER_DOWNLOADABLE_PRODUCTS } from "@/graphql/customer/queries/GetCustomerDownloadableProducts";
@@ -247,7 +249,7 @@ export async function createUserToLogin(
   input: RegisterInputs,
 ): Promise<BagistoUser> {
   try {
-    const { passwordConfirmation, ...userInput } = input;
+    const { passwordConfirmation, referralCode, ...userInput } = input;
     const res = await bagistoFetch<BagistoCreateUserOperation>({
       query: CUSTOMER_REGISTRATION,
       variables: {
@@ -262,6 +264,7 @@ export async function createUserToLogin(
       },
       cache: "no-store",
       revalidate: 3600,
+      headers: referralCode ? { "X-Referral-Code": referralCode } : undefined,
     });
 
     return res.body.data.createCustomer.customer;
@@ -454,6 +457,23 @@ export const getCustomerProfile = cache(async () => {
     return res.body.data?.readCustomerProfile;
   } catch (error) {
     console.error("getCustomerProfile error:", error);
+    return null;
+  }
+});
+
+export const getCustomerLoyalty = cache(async () => {
+  try {
+    const res = await bagistoFetch<{
+      data: { readCustomerLoyalty: any };
+    }>({
+      query: GET_CUSTOMER_LOYALTY,
+      cache: "no-store",
+      isCookies: true,
+    });
+
+    return res.body.data?.readCustomerLoyalty;
+  } catch (error) {
+    console.error("getCustomerLoyalty error:", error);
     return null;
   }
 });
@@ -986,3 +1006,30 @@ export async function addProductToCart(productId: string | number, quantity: num
     };
   }
 }
+
+export async function inviteFriend(friendEmail: string) {
+  try {
+    const res = await bagistoFetch<any>({
+      query: INVITE_FRIEND,
+      variables: {
+        input: {
+          friendEmail,
+        },
+      },
+      cache: "no-store",
+      isCookies: true,
+    });
+
+    return {
+      success: res.body.data?.createInviteFriend?.inviteFriend?.success || false,
+      message: res.body.data?.createInviteFriend?.inviteFriend?.message || "Friend invited successfully"
+    };
+  } catch (error: any) {
+    console.error("inviteFriend error:", error);
+    return {
+      success: false,
+      message: error?.message || "Something went wrong"
+    };
+  }
+}
+

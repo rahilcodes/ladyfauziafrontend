@@ -28,7 +28,7 @@ import {
   ProductVariantNode,
   ProductData,
 } from "@/components/catalog/type";
-import { RelatedProductsSection } from "@components/catalog/product/RelatedProductsSection";
+import { CompleteTheLook } from "@components/catalog/product/CompleteTheLook";
 import ProductInfo from "@components/catalog/product/ProductInfo";
 import { LRUCache } from "@/utils/LRUCache";
 import ProductHeaderClient from "@components/catalog/product/ProductHeaderClient";
@@ -39,6 +39,8 @@ import {
 import { WishlistToggle } from "@/components/catalog/product/WishlistToggle";
 import { CompareToggle } from "@/components/catalog/product/CompareToggle";
 import { getProductMetadata } from "@/utils/helper";
+import RecentlyViewed from "@/components/catalog/RecentlyViewed";
+import TrackProduct from "@/components/catalog/TrackProduct";
 
 const productCache = new LRUCache<ProductNode>(100, 10);
 
@@ -239,7 +241,17 @@ export default async function ProductPage({
         </div>
       </div>
       <Suspense fallback={<RelatedProductSkeleton />}>
-        <RelatedProductsSection fullPath={fullPath} />
+        <CompleteTheLook fullPath={fullPath} />
+      </Suspense>
+      <TrackProduct
+        id={product.id}
+        name={product.name || ""}
+        urlKey={fullPath}
+        imageUrl={product.baseImageUrl || ""}
+        price={String(product.specialPrice || product.price || product.minimumPrice || "0")}
+      />
+      <Suspense fallback={null}>
+        <RecentlyViewed currentProductId={product.id} />
       </Suspense>
     </>
   );

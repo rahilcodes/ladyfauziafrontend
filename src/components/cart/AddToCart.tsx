@@ -75,7 +75,7 @@ function SubmitButton({
   submitted?: boolean;
 }) {
   const buttonClasses = clsx(
-    "relative flex w-full cursor-pointer h-[55px] items-center justify-center gap-4 rounded-full bg-primary px-6 sm:px-20 tracking-wide text-white transition-opacity hover:opacity-90 font-outfit text-base",
+    "relative flex w-full cursor-pointer h-[55px] items-center justify-center gap-4 rounded-none bg-primary px-6 sm:px-20 tracking-[0.18em] text-white hover:bg-[#B59469] transition-all duration-300 font-semibold uppercase text-xs",
   );
   const disabledClasses = "cursor-wait opacity-60";
 
@@ -421,7 +421,7 @@ export function AddToCart({
         {type !== "grouped" && bookingSubType !== 'event' && (
           <div className="flex items-center shrink-0">
             <div
-              className="flex items-center justify-between rounded-full border-2 border-primary dark:border-primary-soft bg-gray-50/50 dark:bg-zinc-900/50"
+              className="flex items-center justify-between rounded-none border border-border dark:border-[#262626] bg-transparent"
               style={{
                 width: '145px',
                 height: '55px',

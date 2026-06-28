@@ -159,6 +159,7 @@ const ReviewDetail: FC<ReviewDetailProps> = ({
                           <GridTileImage
                             key={img.reviewId}
                             fill
+                            sizes="60px"
                             alt={`${img.reviewId}-review`}
                             className="rounded-lg"
                             src={img.url}

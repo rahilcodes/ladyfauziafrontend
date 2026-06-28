@@ -165,7 +165,7 @@ export default function CredentialModal({
             <form onSubmit={handleSubmit(onSubmit)} className={clsx(!isDesktop && "flex justify-center")}>
               <button
                 className={clsx(
-                  "rounded-full bg-gray-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700",
+                  "rounded-none bg-neutral-900 px-5 py-3.5 text-xs font-semibold tracking-[0.2em] text-white hover:bg-neutral-800 transition-all duration-300 uppercase",
                   isSubmitting ? " cursor-not-allowed" : " cursor-pointer",
                   isDesktop ? "w-full" : "w-40 min-w-[150px] mt-2"
                 )}
@@ -208,7 +208,7 @@ export default function CredentialModal({
               <Link className="w-full" href="/customer/login" onClick={finalOnClose} aria-label="Go to sign in page">
                 <button
                   className={clsx(
-                    "w-full rounded-full bg-primary px-5 py-3 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-primary dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+                    "w-full rounded-none bg-primary px-5 py-4 text-center text-xs font-semibold tracking-[0.2em] text-white hover:bg-[#B59469] transition-all duration-300 uppercase",
                     pathname === "/customer/login"
                       ? " cursor-not-allowed"
                       : " cursor-pointer"
@@ -223,7 +223,7 @@ export default function CredentialModal({
               <Link className="w-full" href="/customer/register" onClick={finalOnClose} aria-label="Go to create account page">
                 <button
                   className={clsx(
-                    "w-full rounded-full bg-surface-navy px-5 py-3 text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700",
+                    "w-full rounded-none bg-neutral-900 px-5 py-4 text-[10px] md:text-xs font-semibold tracking-[0.2em] text-white hover:bg-neutral-800 transition-all duration-300 uppercase",
                     pathname === "/customer/register"
                       ? " cursor-not-allowed"
                       : " cursor-pointer"
@@ -347,7 +347,7 @@ export default function CredentialModal({
                   <div className="mt-auto pt-10 flex justify-center w-full">
                     <button
                       onClick={() => setIsShortcutsOpen(true)}
-                      className="w-[181px] h-[47px] bg-surface-muted text-black dark:bg-surface-navy dark:text-white rounded-full flex items-center justify-center gap-1 font-outfit font-medium text-lg leading-none px-10 py-3 shadow-none border-none outline-none"
+                      className="w-[181px] h-[47px] bg-transparent text-black border border-[#EAE5DA] dark:text-white dark:border-[#262626] rounded-none flex items-center justify-center gap-1.5 font-outfit font-medium text-xs tracking-wider uppercase px-8 py-3 outline-none transition-all duration-300 hover:bg-[#F5F2EB] dark:hover:bg-[#262626]"
                     >
                       <ShortcutIcon />
                       <span>Shortcuts</span>

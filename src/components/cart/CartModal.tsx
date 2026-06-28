@@ -113,14 +113,14 @@ function CartLineItem({
           />
           <div className="flex items-center gap-x-2">
             <DeleteItemButton item={item} />
-            <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
+            <div className="ml-auto flex h-8 flex-row items-center rounded-none border border-border dark:border-[#262626]">
               <EditItemQuantityButton
                 item={item}
                 type="minus"
                 disabled={node?.canChangeQty === false}
               />
-              <p className="w-6 text-center">
-                <span className="w-full text-sm">{node?.quantity}</span>
+              <p className="w-6 text-center select-none">
+                <span className="w-full text-xs font-medium">{node?.quantity}</span>
               </p>
               <EditItemQuantityButton
                 item={item}
@@ -278,12 +278,12 @@ export default function CartModal({
           <DrawerContent>
             {() => (
               <>
-                <DrawerHeader className="flex flex-col gap-1">
+                <DrawerHeader className="flex flex-col gap-1 px-6 pt-6 pb-4 border-b border-[#EAE5DA] dark:border-[#262626]">
                   <div className="flex items-center justify-between">
-                    <p className="text-lg font-semibold">My Cart</p>
+                    <p className="text-sm font-light tracking-[0.2em] uppercase text-neutral-900 dark:text-neutral-50">MY CART</p>
                     <button
                       aria-label="Close cart"
-                      className="cursor-pointer"
+                      className="cursor-pointer text-stone-500 hover:text-primary transition-colors"
                       onClick={finalOnClose}
                     >
                       <CloseCart />
@@ -401,7 +401,7 @@ function CheckoutButton({
       />
       <button
         className={clsx(
-          "block w-full rounded-full bg-primary p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100",
+          "block w-full rounded-none bg-primary p-4 text-center text-xs font-semibold tracking-[0.2em] text-white hover:bg-primary-strong transition-all duration-300 uppercase",
           pending ? "cursor-wait" : "cursor-pointer",
         )}
         disabled={pending}

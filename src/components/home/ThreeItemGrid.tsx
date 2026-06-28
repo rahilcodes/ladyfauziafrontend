@@ -87,6 +87,7 @@ function MobileThreeItemGridItem({ product, priority }: {
                     src={product.baseImageUrl}
                     className="object-cover"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 33vw"
                     priority={priority}
                     alt={product.name}
                     label={{
@@ -107,12 +108,12 @@ export const ThreeItemGrid: FC<ThreeItemGridProps> = ({ title, description, prod
     const [firstProduct, secondProduct, thirdProduct] = products;
 
     return (
-        <section className="pt-6 sm:pt-12 lg:pt-20">
+        <section className="pt-8 sm:pt-16 lg:pt-24">
             <div className="md:max-w-4.5xl mx-auto mb-10 w-auto px-0 text-center md:px-36">
-                <h1 className="mb-4 font-outfit text-xl md:text-4xl font-semibold text-black dark:text-white">
+                <h2 className="mb-3 font-cormorant text-2xl md:text-3xl font-light tracking-[0.18em] text-neutral-900 dark:text-neutral-100 uppercase pl-[2px]">
                     {title}
-                </h1>
-                <p className="text-sm md:text-lg font-normal text-selected-black dark:text-selected-white">
+                </h2>
+                <p className="text-xs md:text-sm font-light tracking-wide text-stone-500 dark:text-stone-400 pl-[2px] leading-relaxed">
                     {description}
                 </p>
             </div>

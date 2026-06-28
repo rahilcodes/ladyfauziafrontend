@@ -11,3 +11,5 @@ export { MOVE_WISHLIST_TO_CART } from "./MoveWishlistToCart";
 export { CREATE_COMPARE_ITEM } from "./CreateCompareItem";
 export { DELETE_COMPARE_ITEM } from "./DeleteCompareItem";
 export { DELETE_ALL_COMPARE_ITEMS } from "./DeleteAllCompareItems";
+export { INVITE_FRIEND } from "./InviteFriend";
+

@@ -93,6 +93,7 @@ export default function WishlistCard({ item }: WishlistCardProps) {
                             src={product.baseImageUrl || IMAGES.placeholder}
                             alt={product.name}
                             fill
+                            sizes="(max-width: 768px) 72px, (max-width: 1536px) 100px, 130px"
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                     </Link>

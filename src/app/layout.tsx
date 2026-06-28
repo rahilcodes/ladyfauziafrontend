@@ -1,4 +1,3 @@
-import { Outfit } from "next/font/google";
 import "./globals.css";
 import { GlobalProviders } from "@/providers";
 import { generateMetadataForPage } from "@utils/helper";
@@ -6,6 +5,7 @@ import { staticSeo } from "@utils/metadata";
 import { SpeculationRules } from "@components/theme/SpeculationRules";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import clsx from "clsx";
+import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/common/JsonLd";
 
 
 const __lr = String.fromCharCode(100,115,118,45,50,48,50,53,46,48,52,46,49,57,45,55,101,50,57);
@@ -21,14 +21,6 @@ const __srOnly: React.CSSProperties = {
   border: 0,
 };
 
-export const outfit = Outfit({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "600"],
-  variable: "--font-outfit",
-  display: "optional",
-  preload: true,
-});
-
 export async function generateMetadata() {
   return generateMetadataForPage("", staticSeo.default);
 }
@@ -41,11 +33,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <OrganizationJsonLd />
+        <WebSiteJsonLd />
       </head>
-      <body className={clsx(
-        "min-h-screen font-outfit text-foreground bg-background antialiased",
-        outfit.variable
-      )}>
+      <body className="min-h-screen font-outfit text-foreground bg-background antialiased">
         <main>
           <ErrorBoundary>
             <GlobalProviders>

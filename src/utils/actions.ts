@@ -36,7 +36,7 @@ export async function redirectToCheckout(formData: FormData) {
 
 export async function createUser(formData: RegisterInputs) {
   try {
-    const { firstName, lastName, email, password, passwordConfirmation } =
+    const { firstName, lastName, email, password, passwordConfirmation, referralCode } =
       formData;
 
     const user = await createUserToLogin({
@@ -45,6 +45,7 @@ export async function createUser(formData: RegisterInputs) {
       email,
       password,
       passwordConfirmation,
+      referralCode,
     });
 
     return {
@@ -425,3 +426,34 @@ export async function addProductToCartAction(productId: string | number, quantit
     };
   }
 }
+
+export async function inviteFriendAction(friendEmail: string) {
+  try {
+    const { inviteFriend } = await import('@/utils/bagisto');
+    return await inviteFriend(friendEmail);
+  } catch (err: any) {
+    return {
+      success: false,
+      message: err?.message || "An error occurred"
+    };
+  }
+}
+
+export async function searchProductsAction(queryStr: string) {
+  try {
+    const { GET_PRODUCTS } = await import("@/graphql");
+    const { graphqlRequestNoCache } = await import("@/lib/graphql-fetch");
+    const data = await graphqlRequestNoCache<any>(
+      GET_PRODUCTS,
+      {
+        query: queryStr,
+        first: 5,
+      }
+    );
+    return data?.products?.edges?.map((edge: any) => edge.node) || [];
+  } catch (error) {
+    console.error("searchProductsAction error:", error);
+    return [];
+  }
+}
+
