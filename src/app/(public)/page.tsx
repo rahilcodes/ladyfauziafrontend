@@ -20,11 +20,16 @@ export const revalidate = 3600;
 
 export default async function Home() {
   // Fetch theme customization data for the hero carousel
-  const data = await cachedGraphQLRequest<ThemeCustomizationResponse>(
-    "home",
-    GET_THEME_CUSTOMIZATION,
-    { first: 20 }
-  );
+  let data: ThemeCustomizationResponse | null = null;
+  try {
+    data = await cachedGraphQLRequest<ThemeCustomizationResponse>(
+      "home",
+      GET_THEME_CUSTOMIZATION,
+      { first: 20 }
+    );
+  } catch (error) {
+    console.error("Failed to fetch theme customization on Home Page:", error);
+  }
 
   return (
     <>
