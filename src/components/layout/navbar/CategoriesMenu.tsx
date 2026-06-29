@@ -5,11 +5,16 @@ import { cachedGraphQLRequest } from "@utils/hooks/useCache";
 import { CategoryNode, TreeCategoriesResponse } from "@/types/theme/category-tree";
 
 export async function CategoriesMenu({ type }: { type?: "mobile" | "desktop" }) {
-   const data = await cachedGraphQLRequest<TreeCategoriesResponse>(
-    "category",
-    GET_TREE_CATEGORIES,
-    { parentId: 1 }
-  );
+  let data: TreeCategoriesResponse | null = null;
+  try {
+    data = await cachedGraphQLRequest<TreeCategoriesResponse>(
+      "category",
+      GET_TREE_CATEGORIES,
+      { parentId: 1 }
+    );
+  } catch (error) {
+    console.error("Failed to fetch tree categories in CategoriesMenu:", error);
+  }
 
 
   const categories = data?.treeCategories || [];
