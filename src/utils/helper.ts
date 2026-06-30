@@ -416,14 +416,31 @@ export function throttle<T extends (...args: any[]) => any>(
   };
 }
 
+export function flattenCategoryTree(categories: any[]): any[] {
+  if (!Array.isArray(categories)) return [];
+  return categories.map((category) => {
+    let children: any[] = [];
+    if (category.children?.edges) {
+      children = category.children.edges.map((e: any) => e.node);
+    } else if (Array.isArray(category.children)) {
+      children = category.children;
+    }
+    return {
+      ...category,
+      children: flattenCategoryTree(children),
+    };
+  });
+}
+
 export function findCategoryBySlug(
-  categories: CategoryNode[],
+  categories: any[],
   slug: string,
-): CategoryNode | null {
-  for (const category of categories) {
+): any | null {
+  const flattened = flattenCategoryTree(categories);
+  for (const category of flattened) {
     if (category.translation?.slug === slug) return category;
 
-    if (category.children && isArray(category.children)) {
+    if (category.children && Array.isArray(category.children)) {
       const found = findCategoryBySlug(category.children, slug);
       if (found) return found;
     }

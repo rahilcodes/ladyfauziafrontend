@@ -16,17 +16,21 @@ export const GET_TREE_CATEGORIES = gql`
         metaTitle
       }
       children {
-        id
-        position
-        logoPath
-        status
-        translation {
-          id
-          name
-          slug
-          description
-          urlPath
-          metaTitle
+        edges {
+          node {
+            id
+            position
+            logoPath
+            status
+            translation {
+              id
+              name
+              slug
+              description
+              urlPath
+              metaTitle
+            }
+          }
         }
       }
     }
