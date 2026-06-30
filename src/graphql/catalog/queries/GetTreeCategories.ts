@@ -15,6 +15,20 @@ export const GET_TREE_CATEGORIES = gql`
         urlPath
         metaTitle
       }
+      children {
+        id
+        position
+        logoPath
+        status
+        translation {
+          id
+          name
+          slug
+          description
+          urlPath
+          metaTitle
+        }
+      }
     }
   }
 `;
